@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-	'githubAuth': {
-		'clientID': process.env.GITHUB_KEY,
-		'clientSecret': process.env.GITHUB_SECRET,
-		'callbackURL': process.env.APP_URL + 'auth/github/callback'
+	'twitterAuth': {
+		'consumerKey': 'mSG7EAXutYtyDTsPhP93wcv93',
+		'consumerSecret': 'V1xtoY6gj9hTKNXdBpwaODNqszAHTfyglUL8rDFf3z4SpvVUgk',
+		'callbackURL': 'https://pinterest-clone-galaxyhitcher.c9users.io/',
 	}
 };
