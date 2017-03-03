@@ -9,7 +9,7 @@ module.exports = function (app, passport) {
 		if (req.isAuthenticated()) {
 			return next();
 		} else {
-			res.redirect('/login');
+			res.redirect('/auth/twitter/callback');
 		}
 	}
 
@@ -17,11 +17,11 @@ module.exports = function (app, passport) {
 
 	app.route('/')
 		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public/index.html');
+			res.render('../views/all');
 		});
 
 	app.route('/login')
-		.get(function (req, res) {
+		.get(isLoggedIn, function (req, res) {
 			res.sendFile(path + '/public/login.html');
 		});
 
@@ -41,17 +41,10 @@ module.exports = function (app, passport) {
 			res.json(req.user.github);
 		});
 
-	app.route('/auth/github')
-		.get(passport.authenticate('github'));
-
-	app.route('/auth/github/callback')
-		.get(passport.authenticate('github', {
+	app.route('/auth/twitter/callback')
+		.get(passport.authenticate('twitter', {
 			successRedirect: '/',
 			failureRedirect: '/login'
 		}));
 
-	app.route('/api/:id/clicks')
-		.get(isLoggedIn, clickHandler.getClicks)
-		.post(isLoggedIn, clickHandler.addClick)
-		.delete(isLoggedIn, clickHandler.resetClicks);
 };
