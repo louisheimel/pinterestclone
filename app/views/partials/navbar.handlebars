@@ -4,11 +4,11 @@
 				
 			</div>
 			<ul class="nav navbar-nav navbar-left">
-				<li><a href="#">All</a></li>
+				<li><a href="/">All</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				{{#if loggedin}}
-                    <li><a href="#"></a></li>
+                    <li><a href="/logout">Log Out</a></li>
 				{{else}}
 				    <li><a href="/auth/twitter/callback">Login</a></li>
 				{{/if}}
