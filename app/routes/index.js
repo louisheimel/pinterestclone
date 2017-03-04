@@ -12,17 +12,21 @@ module.exports = function (app, passport) {
 			res.redirect('/auth/twitter/callback');
 		}
 	}
-
+	
 	var clickHandler = new ClickHandler();
 
 	app.route('/')
 		.get(function (req, res) {
-			res.render('../views/all');
+			if (req.isAuthenticated()) {
+				res.render('../views/all', {loggedin: true});
+			} else {
+				res.render('../views/all', {loggedin: false});
+			}
 		});
 
 	app.route('/login')
 		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public/login.html');
+			res.redirect('/auth/twitter/callback');
 		});
 
 	app.route('/logout')
