@@ -43,6 +43,19 @@ module.exports = function (app, passport) {
 			})
 		})
 		
+	app.route('/get_my_pics')
+		.get(isLoggedIn, function(req, res, next) {
+			Pic.find({_creator: req.user._id}, function(err, pics) {
+				if (err) throw err;
+				res.json(pics);
+			})
+		})
+	
+	app.route('/my_pics')
+		.get(isLoggedIn, function(req, res, next) {
+			res.render('../views/mypics', {loggedin: true});
+		});
+		
 	app.route('/submit_pic')
 		.post(isLoggedIn, urlencodedParser, function(req, res, next) {
 			// res.json({urldata: req.body, currentuser: req.user});
