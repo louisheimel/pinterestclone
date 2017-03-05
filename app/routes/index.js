@@ -2,6 +2,12 @@
 
 var path = process.cwd();
 var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
+var User = require('../models/users'),
+	Pic = require('../models/pics')
+
+var bodyParser = require('body-parser');
+
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 module.exports = function (app, passport) {
 
@@ -27,6 +33,21 @@ module.exports = function (app, passport) {
 	app.route('/login')
 		.get(isLoggedIn, function (req, res) {
 			res.redirect('/auth/twitter/callback');
+		});
+		
+	app.route('/submit_pic')
+		.post(isLoggedIn, urlencodedParser, function(req, res, next) {
+			// res.json({urldata: req.body, currentuser: req.user});
+			User.findOne({_id: req.user._id}, function(err, user) {
+				if (err) throw err;
+				var newPic = new Pic({
+									  url: req.body.url,
+									  description: req.body.description,
+									  _creator: user._id,
+									  });
+				newPic.save();
+			});
+			res.redirect('/')
 		});
 
 	app.route('/logout')

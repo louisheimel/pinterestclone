@@ -10,9 +10,9 @@
 
 			    {{!--Add dropdown form here--}}
 			    <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add a Pic <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		          	<form>
+		          	<form method="POST" action="/submit_pic">
   		        	    <li><input placeholder="Url" class="form-control" name="url" /></li>
 			            <li><input placeholder="Description" class="form-control" name="description" /></li>
 			            <li><button class="btn btn-primary" type="submit">Send</button></li>
