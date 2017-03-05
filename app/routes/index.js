@@ -35,6 +35,14 @@ module.exports = function (app, passport) {
 			res.redirect('/auth/twitter/callback');
 		});
 		
+	app.route('/all_pics')
+		.get(function(req, res, next){
+			Pic.find({}, function(err, pics) {
+				if (err) throw err;
+				res.json(pics);
+			})
+		})
+		
 	app.route('/submit_pic')
 		.post(isLoggedIn, urlencodedParser, function(req, res, next) {
 			// res.json({urldata: req.body, currentuser: req.user});
