@@ -3,7 +3,7 @@
 (function() {
     ajaxFunctions.ready(
         
-        ajaxFunctions.ajaxRequest('GET', '/all_pics', function(data) {
+        ajaxFunctions.ajaxRequest('GET', '/user/', function(data) {
         var grid = document.querySelector('.masonry-grid');
         document.querySelector('body').setAttribute('width', '100%');
         grid.style.margin = '20px';

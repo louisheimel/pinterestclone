@@ -35,10 +35,17 @@ module.exports = function (app, passport) {
 			res.redirect('/auth/twitter/callback');
 		});
 		
+	app.route('/user/:id')
+		.get(function(req, res) {
+			Pic.find({_creator: req.params.id}, function(err, pics) {
+				if (err) throw err;
+				res.render('../views/userpics', {pics: pics});
+			})
+		})
+		
 	app.route('/all_pics')
 		.get(function(req, res, next){
-			Pic.find({}, function(err, pics) {
-				if (err) throw err;
+			Pic.find({}).then(function(pics) {
 				res.json(pics);
 			})
 		})
@@ -61,10 +68,12 @@ module.exports = function (app, passport) {
 			// res.json({urldata: req.body, currentuser: req.user});
 			User.findOne({_id: req.user._id}, function(err, user) {
 				if (err) throw err;
+				
 				var newPic = new Pic({
-									  url: req.body.url,
-									  description: req.body.description,
-									  _creator: user._id,
+										  url: req.body.url,
+										  description: req.body.description,
+										  _creator: user._id,
+										  creator_username: user.twitter.username,
 									  });
 				newPic.save();
 			});
