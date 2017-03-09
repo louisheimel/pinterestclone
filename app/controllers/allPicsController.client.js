@@ -11,28 +11,24 @@
             var img = document.createElement('img'),
                 div = document.createElement('div'),
                 anchor = document.createElement('a'),
-                p = document.createElement('p');
+                img_link = document.createElement('a');
             
-            p.appendChild(document.createTextNode(datum.description));
+            img_link.appendChild(document.createTextNode(datum.description));
+            img_link.setAttribute('href', datum.url)
                 
             img.setAttribute('src', datum.url);
-            img.style.width = '200px';
-            img.style.boxSizing = 'border-box';
-            img.style.padding = '10px';
-            
+            img.onerror = function(e) {
+                console.log(e.target);
+                e.target.setAttribute('src', 'http://placehold.it/350x150');
+            }
             anchor.appendChild(document.createTextNode(datum.creator_username));
+            anchor.classList.add('user_link');
             anchor.setAttribute('href', '/user/' + datum._creator);
-            anchor.style.display = 'block';
-            anchor.style.margin = '10px';
-            
-            p.style.display = 'block'
-            p.style.margin = '10px';
             
             div.classList.add('grid-item');
             
             div.appendChild(img);
-            // div.appendChild(title);
-            div.appendChild(p);
+            div.appendChild(img_link);
             div.appendChild(anchor);
             
             grid.appendChild(div);

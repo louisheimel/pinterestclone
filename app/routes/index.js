@@ -37,9 +37,17 @@ module.exports = function (app, passport) {
 		
 	app.route('/user/:id')
 		.get(function(req, res) {
-			Pic.find({_creator: req.params.id}, function(err, pics) {
-				if (err) throw err;
-				res.render('../views/userpics', {pics: pics});
+			// console.log(req.params.id)
+			res.render('../views/userpics', {id: req.params.id})
+		});
+		
+	app.route('/remove/:id')
+		.get(function(req, res) {
+			Pic.findOneAndRemove(req.params.id)
+			.then(function() {
+				console.log('pic removed!')
+				console.log(req.params.id)
+				res.redirect('/my_pics');
 			})
 		})
 		

@@ -1,5 +1,17 @@
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
 
+body {
+	width: 100%;
+}
+
+.grid-item a {
+	display: block;
+	margin-left: 10px;
+}
+
+.grid-item a:first-of-type {
+	font-weight: bold;
+}
 .navbar {
 	border-radius: 0px;
 }
@@ -9,4 +21,19 @@
 
 .navbar-right {
 	padding-right: 35px;
+}
+
+.masonry-grid {
+	margin: 20px;
+}
+
+img {
+	width: 200px;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+p {
+	display: block;
+	margin: 10px;
 }

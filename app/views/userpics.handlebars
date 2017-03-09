@@ -1,10 +1,3 @@
-<div class="masonry-grid">
-    {{#each pics}}
-        <div>
-            <img src={{url}} />
-            <a href={{url}}>{{description}}</a>
-        </div>
-    {{/each}}
-</div>
-<script type="text/javascript" src="common/ajax-functions.js"></script>
-<script type="text/javascript" src="controllers/userPicsController.client.js"></script>
+<div class="id" data-id={{id}}></div>
+<div class="masonry-grid"></div>
+<script type="text/javascript" src="../controllers/userPicsController.client.js"></script>

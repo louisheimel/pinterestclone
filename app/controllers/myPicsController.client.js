@@ -5,21 +5,27 @@
         
         ajaxFunctions.ajaxRequest('GET', '/all_pics', function(data) {
         var grid = document.querySelector('.masonry-grid');
-        document.querySelector('body').setAttribute('width', '100%');
-        grid.style.margin = '20px';
         JSON.parse(data).forEach((datum) => {
             var img = document.createElement('img'),
-                div = document.createElement('div');
+                div = document.createElement('div'),
+                img_link = document.createElement('a'),
+                remove_link = document.createElement('a');
             img.setAttribute('src', datum.url);
-            img.style.width = '200px';
-            img.style.boxSizing = 'border-box';
-            img.style.padding = '10px 10px 20px 10px';
+            img.onerror = function(e) {
+                console.log(e.target);
+                e.target.setAttribute('src', 'http://placehold.it/350x150');
+            }
+            img_link.appendChild(document.createTextNode(datum.description));
+            img_link.setAttribute('href', datum.url);
+            remove_link.setAttribute('href', '/remove/' + datum._id);
+            remove_link.appendChild(document.createTextNode('Remove'));
             div.classList.add('grid-item');
             
             div.appendChild(img);
+            div.appendChild(img_link);
+            div.appendChild(remove_link);
             grid.appendChild(div);
         })
-        console.log(data);
         var msnry = new Masonry( grid, {
           // options
           itemSelector: '.grid-item',
