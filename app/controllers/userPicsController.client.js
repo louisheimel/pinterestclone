@@ -1,16 +1,3 @@
-// 'use strict';
-
-// (function() {
-
-//     ajaxFunctions.ready(
-//             // var id = document.querySelector('.id').dataset.id;
-//             ajaxFunctions.ajaxRequest('GET', '/all_pics', function(data) {
-//                 var id = document.querySelector('.id').dataset.id,
-//                 user_data = JSON.parse(data).filter(datum => datum._creator === id);
-//             }))
-    
-// })();
-
 'use strict';
 
 (function() {
@@ -34,15 +21,11 @@
                 console.log(e.target);
                 e.target.setAttribute('src', 'http://placehold.it/350x150');
             }
-            // anchor.appendChild(document.createTextNode(datum.creator_username));
-            // anchor.classList.add('user_link');
-            // anchor.setAttribute('href', '/user/' + datum._creator);
             
             div.classList.add('grid-item');
             
             div.appendChild(img);
             div.appendChild(img_link);
-            // div.appendChild(anchor);
             
             grid.appendChild(div);
         })

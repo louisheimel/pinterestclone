@@ -24,9 +24,9 @@ module.exports = function (app, passport) {
 	app.route('/')
 		.get(function (req, res) {
 			if (req.isAuthenticated()) {
-				res.render('../views/all', {loggedin: true});
+				res.render(path + '/app/views/all.handlebars', {loggedin: true});
 			} else {
-				res.render('../views/all', {loggedin: false});
+				res.render(path + '/app/views/all.handlebars', {loggedin: false});
 			}
 		});
 
@@ -37,8 +37,7 @@ module.exports = function (app, passport) {
 		
 	app.route('/user/:id')
 		.get(function(req, res) {
-			// console.log(req.params.id)
-			res.render('../views/userpics', {id: req.params.id})
+			res.render(path + '/app/views/userpics.handlebars', {id: req.params.id})
 		});
 		
 	app.route('/remove/:id')
@@ -68,12 +67,11 @@ module.exports = function (app, passport) {
 	
 	app.route('/my_pics')
 		.get(isLoggedIn, function(req, res, next) {
-			res.render('../views/mypics', {loggedin: true});
+			res.render(path + '/app/views/mypics.handlebars', {loggedin: true});
 		});
 		
 	app.route('/submit_pic')
 		.post(isLoggedIn, urlencodedParser, function(req, res, next) {
-			// res.json({urldata: req.body, currentuser: req.user});
 			User.findOne({_id: req.user._id}, function(err, user) {
 				if (err) throw err;
 				

@@ -6,13 +6,14 @@ var routes = require('./app/routes/index.js');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
+var path = require('path');
 var bodyParser = require('body-parser');
 
 var app = express();
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
-app.set('views', 'app/views');
+app.engine('handlebars', exphbs({defaultLayout: 'main', partialsDir: __dirname + '/app/views/partials', layoutsDir: __dirname + '/app/views/layouts'}));
+app.set('view engine', 'express-handlebars');
+app.set('views','app/views');
 
 require('dotenv').load();
 require('./app/config/passport')(passport);
