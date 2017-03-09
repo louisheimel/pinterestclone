@@ -18,8 +18,6 @@ module.exports = function (app, passport) {
 		}
 	}
 	
-	var clickHandler = new ClickHandler();
-
 	app.route('/')
 		.get(function (req, res) {
 			if (req.isAuthenticated()) {
