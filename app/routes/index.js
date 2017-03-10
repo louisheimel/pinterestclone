@@ -23,7 +23,7 @@ module.exports = function (app, passport) {
 			if (req.isAuthenticated()) {
 				res.render(path + '/app/views/all.handlebars', {loggedin: true});
 			} else {
-				res.render(path + '/app/views/all.handlebars', {loggedin: true});
+				res.render(path + '/app/views/all.handlebars', {loggedin: false});
 			}
 		});
 		
