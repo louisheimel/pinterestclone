@@ -23,7 +23,7 @@ module.exports = function (app, passport) {
 			if (req.isAuthenticated()) {
 				res.render(path + '/app/views/all.handlebars', {loggedin: true});
 			} else {
-				res.render(path + '/app/views/all.handlebars', {loggedin: false});
+				res.render(path + '/app/views/all.handlebars', {loggedin: true});
 			}
 		});
 		
@@ -81,7 +81,7 @@ module.exports = function (app, passport) {
 	app.route('/logout')
 		.get(function (req, res) {
 			req.logout();
-			res.redirect('/');
+			res.redirect('/login');
 		});
 
 	app.route('/profile')
@@ -97,7 +97,7 @@ module.exports = function (app, passport) {
 	app.route('/auth/twitter/callback')
 		.get(passport.authenticate('twitter', {
 			successRedirect: '/',
-			failureRedirect: '/'
+			failureRedirect: '/',
 		}));
 
 };
