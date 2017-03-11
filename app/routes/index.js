@@ -34,8 +34,18 @@ module.exports = function (app, passport) {
 		
 	app.route('/user/:id')
 		.get(function(req, res) {
-			res.render(path + '/app/views/userpics.handlebars', {id: req.params.id})
+			if (req.isAuthenticated()) {
+				res.render(path + '/app/views/userpics.handlebars', {loggedin: true, id: req.params.id});
+			} else {
+				res.render(path + '/app/views/userpics.handlebars', {loggedin: false, id: req.params.id});
+			}
 		});
+	app.route('/userpics/:id')
+		.get(function(req, res) {
+			Pic.find({_creator: req.params.id}, function(err, pics) {
+				res.json(pics);
+			})
+		})
 		
 	app.route('/remove/:id')
 		.get(function(req, res) {
