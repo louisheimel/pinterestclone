@@ -3,7 +3,7 @@
 (function() {
     ajaxFunctions.ready(
         
-        ajaxFunctions.ajaxRequest('GET', '/my_pics', function(data) {
+        ajaxFunctions.ajaxRequest('GET', '/get_my_pics', function(data) {
         var grid = document.querySelector('.masonry-grid');
         JSON.parse(data).forEach((datum) => {
             var img = document.createElement('img'),
