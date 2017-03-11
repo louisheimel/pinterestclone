@@ -26,11 +26,6 @@ module.exports = function (app, passport) {
 				res.render(path + '/app/views/all.handlebars', {loggedin: false});
 			}
 		});
-
-	app.route('/login')
-		.get(isLoggedIn, function (req, res) {
-			res.redirect('/auth/twitter/callback');
-		});
 		
 	app.route('/user/:id')
 		.get(function(req, res) {
@@ -96,7 +91,7 @@ module.exports = function (app, passport) {
 	app.route('/logout')
 		.get(function (req, res) {
 			req.logout();
-			res.redirect('/');
+			res.redirect('/login');
 		});
 
 	app.route('/profile')
@@ -112,7 +107,7 @@ module.exports = function (app, passport) {
 	app.route('/auth/twitter/callback')
 		.get(passport.authenticate('twitter', {
 			successRedirect: '/',
-			failureRedirect: '/login'
+			failureRedirect: '/',
 		}));
 
 };
