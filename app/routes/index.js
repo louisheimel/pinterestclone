@@ -64,7 +64,7 @@ module.exports = function (app, passport) {
 		.get(isLoggedIn, function(req, res, next) {
 			User.find({id: req.user._id}, function(err, user) {
 				if (err) throw err;
-				Pic.find({_creator: user}, function(err, pics) {
+				Pic.find({}, function(err, pics) {
 					if (err) throw err;
 					res.json(pics);
 				});
