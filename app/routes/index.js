@@ -63,9 +63,12 @@ module.exports = function (app, passport) {
 	app.route('/get_my_pics')
 		.get(isLoggedIn, function(req, res, next) {
 			// res.json(req.user);
-			Pic.find({_creator: mongoose.Types.ObjectId(req.user._id)}, function(err, pics) {
+			User.find({id: req.user._id}, function(err, user) {
 				if (err) throw err;
-				res.json(pics);
+				Pic.find({_creator: user}, function(err, pics) {
+					if (err) throw err;
+					res.json(pics);
+				})
 			})
 		})
 	
