@@ -4,6 +4,7 @@
     ajaxFunctions.ready(
         
         ajaxFunctions.ajaxRequest('GET', '/get_my_pics', function(data) {
+            console.log(data);
         var grid = document.querySelector('.masonry-grid');
         JSON.parse(data).forEach((datum) => {
             var img = document.createElement('img'),
