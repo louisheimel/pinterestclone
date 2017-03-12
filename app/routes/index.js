@@ -2,7 +2,8 @@
 
 var path = process.cwd();
 var User = require('../models/users'),
-	Pic = require('../models/pics')
+	Pic = require('../models/pics'),
+	mongoose = require('mongoose');
 
 var bodyParser = require('body-parser');
 
@@ -61,11 +62,11 @@ module.exports = function (app, passport) {
 		
 	app.route('/get_my_pics')
 		.get(isLoggedIn, function(req, res, next) {
-			res.json(req.user);
-			// Pic.find({_creator: req.user.id}, function(err, pics) {
-			// 	if (err) throw err;
-			// 	res.json(pics);
-			// })
+			// res.json(req.user);
+			Pic.find({_creator: mongoose.Types.ObjectId(req.user._id)}, function(err, pics) {
+				if (err) throw err;
+				res.json(pics);
+			})
 		})
 	
 	app.route('/my_pics')
