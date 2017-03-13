@@ -65,9 +65,10 @@ module.exports = function (app, passport) {
 				// res.json(req.user)
 				User.findOne({_creator: req.user._id}, function(err, usr) {
 					if (err) throw err;
-					Pic.find({_creator: usr}, function(err, pics) {
-						res.json(pics);
-					})
+					res.json(usr);
+					// Pic.find({_creator: usr}, function(err, pics) {
+					// 	res.json(pics);
+					// })
 					// res.json(pics);
 					// res.end(JSON.parse(pics).filter((pic) => { return pic.creator_username === req.user.twitter.username; }));
 				});
