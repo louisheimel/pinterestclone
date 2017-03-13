@@ -8,7 +8,8 @@
         console.log(data);
         var grid = document.querySelector('.masonry-grid');
         JSON.parse(data)
-            .filter((pic) => { return pic._creator === data.id; })
+            .pics
+            .filter((pic) => { return pic._creator === JSON.parse(data).id; })
             .forEach((datum) => {
             var img = document.createElement('img'),
                 div = document.createElement('div'),
