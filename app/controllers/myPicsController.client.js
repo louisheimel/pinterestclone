@@ -3,7 +3,7 @@
 (function() {
     ajaxFunctions.ready(
         
-        ajaxFunctions.ajaxRequest('GET', '/all_pics', function(data) {
+        ajaxFunctions.ajaxRequest('GET', '/get_my_pics', function(data) {
         var all_pics = data;
         console.log(data);
         var grid = document.querySelector('.masonry-grid');
