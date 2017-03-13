@@ -62,10 +62,9 @@ module.exports = function (app, passport) {
 		
 	app.route('/get_my_pics')
 		.get(isLoggedIn, function(req, res, next) {
-				
-				Pic.find({}, function(err, pics) {
+				Pic.find({_creator: req.user.twitter.username}, function(err, pics) {
 					if (err) throw err;
-					res.json(req.user);
+					res.json(pics);
 					// res.end(JSON.parse(pics).filter((pic) => { return pic.creator_username === req.user.twitter.username; }));
 				});
 			
