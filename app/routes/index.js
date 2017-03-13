@@ -63,7 +63,7 @@ module.exports = function (app, passport) {
 	app.route('/get_my_pics')
 		.get(isLoggedIn, function(req, res, next) {
 				
-				Pic.find({creator_username: req.user.username}, function(err, pics) {
+				Pic.find({}, function(err, pics) {
 					if (err) throw err;
 					res.json(pics);
 				});
