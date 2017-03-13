@@ -65,7 +65,7 @@ module.exports = function (app, passport) {
 				
 				Pic.find({}, function(err, pics) {
 					if (err) throw err;
-					res.json(pics);
+					res.end(JSON.parse(pics).filter((pic) => { return pic.creator_username === req.user.twitter.username; }));
 				});
 			
 		})
