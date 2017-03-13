@@ -7,7 +7,9 @@
         var all_pics = data;
         console.log(data);
         var grid = document.querySelector('.masonry-grid');
-        JSON.parse(data).forEach((datum) => {
+        JSON.parse(data)
+            .filter((pic) => { return pic._creator === data.id; })
+            .forEach((datum) => {
             var img = document.createElement('img'),
                 div = document.createElement('div'),
                 img_link = document.createElement('a'),
